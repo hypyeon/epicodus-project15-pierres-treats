@@ -1,0 +1,35 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PierresTreats.Models.Treat
+@using PierresTreats.Models
+
+<h2>Treat Details</h2>
+<hr />
+<h3>@Html.DisplayFor(model => model.Name)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>No flavor has been added for this treat.</p>
+}
+else
+{
+  <h4>Flavors:</h4>
+  <ul>
+    @foreach(TreatFlavor join in Model.JoinEntities)
+    {
+      <li>Tag: @join.Flavor.Name</li>
+      @using (Html.BeginForm("DeleteJoin", "Items"))
+      {
+        @Html.Hidden("id", @join.TreatFlavorId)
+        <input type="submit" value="Remove" />
+      }
+    }
+  </ul>
+}
+
+<p>@Html.ActionLink("Edit", "Edit", new { id = Model.TreatId })</p>
+<p>@Html.ActionLink("Delete", "Delete", new { id = Model.TreatId })</p>
+<p>@Html.ActionLink("Treat List", "Index")</p>
+<p>@Html.ActionLink("Add a Flavor", "AddFlavor", new { id = Model.TreatId })</p>
