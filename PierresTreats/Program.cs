@@ -12,7 +12,7 @@ namespace PierresTreats
       WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
       builder.Services.AddControllersWithViews();
       builder.Services
-        .AddDbContext<ToDoListContext>(
+        .AddDbContext<PierresTreatsContext>(
           dbContextOptions => dbContextOptions
           .UseMySql(
             builder.Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(builder.Configuration["ConnectionStrings:DefaultConnection"])
@@ -20,7 +20,7 @@ namespace PierresTreats
         );
 
       WebApplication app = builder.Build();
-      
+
       app.UseHttpsRedirection();
       app.UseStaticFiles();
 

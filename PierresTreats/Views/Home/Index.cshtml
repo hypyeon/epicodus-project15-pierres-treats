@@ -1,0 +1,38 @@
+@using PierresTreats.Models;
+
+<h1>Pierre's Sweet and Savory Treats</h1>
+
+<hr />
+
+<h4>Famous Treats</h4>
+@if (Model["treats"].Length == 0)
+{
+  <p>No treats have been added yet.</p>
+}
+<ul>
+  @foreach (Treat treat in Model["treats"])
+  {
+    <li>
+      @Html.ActionLink(@treat.Name, "Details", "Treats", new { id = @treat.TreatId })
+    </li>
+  }
+</ul>
+
+<h4>Irresistable Flavors</h4>
+@if (Model["flavors"].Length == 0)
+{
+  <p>No flavors have been added yet.</p>
+}
+<ul>
+  @foreach (Flavor flavor in Model["flavors"])
+  {
+    <li>
+      @Html.ActionLink(@flavor.Name, "Details", "Flavors", new { id = @flavor.FlavorId })
+    </li>
+  }
+</ul>
+
+<hr />
+
+<p>@Html.ActionLink("Manage Treats", "Index", "Treats")</p>
+<p>@Html.ActionLink("Manage Flavors", "Index", "Flavors")</p>
