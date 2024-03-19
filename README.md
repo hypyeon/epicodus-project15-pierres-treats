@@ -55,11 +55,11 @@ dotnet tool install --global dotnet-ef --version 6.0.0
 ```
 dotnet add package Microsoft.EntityFrameworkCore.Design -v 6.0.0
 ```
-6. Run `dotnet ef migrations add [AddEntity]` to create a data migration for the database. *Replace `[AddEntity]` with your own choice. Check out how to name your migration [here](https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli).*
-7. Refer to the following commands when updating, viewing, and deleting migrations. These commands should be made within the production directory. 
-- To update the database after making a change, run `dotnet ef database update` in the terminal. 
-- To remove the recent update, run `dotnet ef migrations remove` in the terminal. 
-- To view the update history, run `dotnet ef migrations list` in the terminal. 
+6. Run `dotnet ef migrations add [AddEntity]` to create a data migration for the database. *Check out how to name your migration [here](https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli).*
+7. Refer to the following commands when updating, deleting, and viewing migrations. These commands should be made within the production directory. 
+- To **update** the database after making a change, run `dotnet ef database update` in the terminal. 
+- To **remove** the recent update, run `dotnet ef migrations remove` in the terminal. 
+- To **view** the update history, run `dotnet ef migrations list` in the terminal. 
 8. To configure Identity to work with EF Core, run the following command in the terminal.
 ```
 dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore -v 6.0.0
