@@ -36,7 +36,7 @@ namespace PierresTreats.Controllers
       else {
         _db.Treats.Add(treat);
         _db.SaveChanges();
-        return RedirectToAction("Details");
+        return RedirectToAction("Details", new { id = treat.TreatId });
       }
     }
 
@@ -60,12 +60,12 @@ namespace PierresTreats.Controllers
     {
       _db.Treats.Update(treat);
       _db.SaveChanges();
-      return RedirectToAction("Details");
+      return RedirectToAction("Details", new { id = treat.TreatId });
     }
 
     public ActionResult Delete(int id)
     {
-      Treat treat = _db.Treats.FirstOrDefault(item => item.TreatId == id);
+      Treat treat = _db.Treats.FirstOrDefault(t => t.TreatId == id);
       return View(treat);
     }
 

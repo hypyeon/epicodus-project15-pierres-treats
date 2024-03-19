@@ -2,7 +2,7 @@
   Layout = "_Layout";
 }
 
-@model PierresTreats.Models.Treat
+@model PierresTreats.Models.Flavor
 
 <h2>Edit</h2>
 
@@ -10,11 +10,11 @@
 
 @using (Html.BeginForm())
 {
-  @Html.HiddenFor(model => model.TreatId)
+  @Html.HiddenFor(model => model.FlavorId)
 
   @Html.LabelFor(model => model.Name)
   @Html.EditorFor(model => model.Name)
 
   <input type="submit" value="Update" />
 }
-<p>@Html.ActionLink("Treat List", "Index")</p>
+<p>@Html.ActionLink("Flavor List", "Index")</p>
