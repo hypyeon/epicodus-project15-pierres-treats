@@ -7,32 +7,40 @@
 
 <h2>Flavor Details</h2>
 <hr />
-<h3>@Html.DisplayFor(model => model.Name)</h3>
-
-@if(@Model.JoinEntities.Count == 0)
-{
-  <p>No treat has been added to this flavor.</p>
-}
-else
-{
-  <p>Treats that belong to this flavor:</p>
-  <ul>
-    @foreach(TreatFlavor join in Model.JoinEntities)
+<div class="lists">
+  <div class="list">
+    <h3>@Html.DisplayFor(model => model.Name)</h3>
+    @if(@Model.JoinEntities.Count == 0)
     {
-      <li>@join.Treat.Name</li>
-      @if (User.Identity.IsAuthenticated)
-      {
-        @using (Html.BeginForm("DeleteJoin", "Items"))
-        {
-          @Html.Hidden("id", @join.TreatFlavorId)
-          <input type="submit" value="Remove" />
-        }
-      }
+      <p>No treat has been added to this flavor.</p>
     }
-  </ul>
-}
+    else
+    {
+      <p>Treats that belong to this flavor:</p>
+      <ul>
+        @foreach(TreatFlavor join in Model.JoinEntities)
+        {
+          <div class="treats">
+            <li>@join.Treat.Name</li>
+            @if (User.Identity.IsAuthenticated)
+            {
+              @using (Html.BeginForm("DeleteJoin", "Items"))
+              {
+                @Html.Hidden("id", @join.TreatFlavorId)
+                <input type="submit" value="Remove" />
+              }
+            }
+          </div>
+        }
+      </ul>
+    }
 
-<p>@Html.ActionLink("Edit", "Edit", new { id = Model.FlavorId })</p>
-<p>@Html.ActionLink("Delete", "Delete", new { id = Model.FlavorId })</p>
-<p>@Html.ActionLink("Flavor List", "Index")</p>
-<p>@Html.ActionLink("Add Treat", "AddTreat", new { id = Model.FlavorId })</p>
+  </div>
+</div>
+
+<div class="buttons">
+  <p>@Html.ActionLink("Add Treat", "AddTreat", new { id = Model.FlavorId })</p>
+  <p>@Html.ActionLink("Edit", "Edit", new { id = Model.FlavorId })</p>
+  <p>@Html.ActionLink("Delete", "Delete", new { id = Model.FlavorId })</p>
+  <p>@Html.ActionLink("Flavor List", "Index")</p>
+</div>

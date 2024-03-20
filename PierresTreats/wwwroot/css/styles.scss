@@ -1,8 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Preahvihear&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
+
+$fontTitle: "Preahvihear", sans-serif;
+$font: "Yomogi", cursive;
+
 @mixin flexCenter {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+@mixin listStyle {
+  text-decoration: none;
+  padding: .5rem 1rem;
+  background-color: black;
+  color: white;
+  border-radius: 6px;
+  &:hover {
+    background-color: rgb(255, 92, 119);
+  }
 }
 
 * {
@@ -16,4 +33,78 @@ body {
   height: 100vh;
   @include flexCenter;
   background-color: rgb(255, 236, 232);
+  font-family: $font;
+  gap: 2rem;
+}
+
+h1 {
+  font-family: $fontTitle;
+  color: rgb(238, 128, 146);
+}
+
+h2 {
+  font-family: $fontTitle;
+}
+
+.lists {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin: 2rem 0;
+  .list {
+    h4 {
+      text-align: center;
+      font-size: 1.75rem;
+    }
+    background-color: white;
+    padding: 2rem;
+    width: 30vw;
+    border-radius: 12px;
+    ul {
+      padding-left: 0;
+      margin: 2rem 0 0 0;
+      li {
+        list-style: none;
+        width: fit-content;
+        display: inline-block;
+        height: fit-content;
+        margin: 1rem .5rem;
+        a {
+          @include listStyle;
+        }
+      }
+    }
+    h3, p {
+      text-align: center;
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  a {
+    font-family: $fontTitle;
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    padding: 1rem 2rem;
+    border: 2px solid black;
+    box-shadow: 4px 4px 0 rgba(238, 128, 146, 0.5);
+  }
+}
+
+.flavors, .treats {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  input {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: .15rem .5rem;
+    border-radius: 6px;
+    font-size: .85rem;
+  }
 }

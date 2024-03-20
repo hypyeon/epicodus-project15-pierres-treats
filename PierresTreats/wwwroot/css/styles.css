@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Preahvihear&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Yomogi&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -12,4 +14,87 @@ body {
   justify-content: center;
   align-items: center;
   background-color: rgb(255, 236, 232);
+  font-family: "Yomogi", cursive;
+  gap: 2rem;
+}
+
+h1 {
+  font-family: "Preahvihear", sans-serif;
+  color: rgb(238, 128, 146);
+}
+
+h2 {
+  font-family: "Preahvihear", sans-serif;
+}
+
+.lists {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+.lists .list {
+  background-color: white;
+  padding: 2rem;
+  width: 30vw;
+  border-radius: 12px;
+}
+.lists .list h4 {
+  text-align: center;
+  font-size: 1.75rem;
+}
+.lists .list ul {
+  padding-left: 0;
+  margin: 2rem 0 0 0;
+}
+.lists .list ul li {
+  list-style: none;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: inline-block;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 1rem 0.5rem;
+}
+.lists .list ul li a {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  background-color: black;
+  color: white;
+  border-radius: 6px;
+}
+.lists .list ul li a:hover {
+  background-color: rgb(255, 92, 119);
+}
+.lists .list h3, .lists .list p {
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+}
+.buttons a {
+  font-family: "Preahvihear", sans-serif;
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  padding: 1rem 2rem;
+  border: 2px solid black;
+  box-shadow: 4px 4px 0 rgba(238, 128, 146, 0.5);
+}
+
+.flavors, .treats {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.flavors input, .treats input {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
 }/*# sourceMappingURL=styles.css.map */
