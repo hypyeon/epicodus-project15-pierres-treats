@@ -4,21 +4,32 @@ using PierresTreats.Models;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace PierresTreats.Controllers
 {
+  [Authorize]
   public class TreatsController : Controller
   {
     private readonly PierresTreatsContext _db;    
-    public TreatsController(PierresTreatsContext db)
+    private readonly UserManager<ApplicationUser> _userManager;
+    public TreatsController(UserManager<ApplicationUser> userManager,PierresTreatsContext db)
     {
+      _userManager = userManager;
       _db = db; 
     }
 
-    public ActionResult Index()
+    public async Task<ActionResult> Index()
     {
-      List<Treat> model = _db.Treats.ToList();
-      return View(model);
+      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      ApplicationUser user = await _userManager.FindByIdAsync(userId);
+      List<Treat> userTreats = _db.Treats
+        .Where(entry => entry.User.Id == user.Id)
+        .ToList();
+      return View(userTreats);
     }
 
     public ActionResult Create()
@@ -27,7 +38,7 @@ namespace PierresTreats.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Treat treat)
+    public async Task<ActionResult> Create(Treat treat)
     {
       if (!ModelState.IsValid)
       {
@@ -35,6 +46,9 @@ namespace PierresTreats.Controllers
       }
       else 
       {
+        string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        ApplicationUser user = await _userManager.FindByIdAsync(userId);
+        treat.User = user;
         _db.Treats.Add(treat);
         _db.SaveChanges();
         return RedirectToAction("Details", new { id = treat.TreatId });
