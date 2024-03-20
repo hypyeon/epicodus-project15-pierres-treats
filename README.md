@@ -15,15 +15,17 @@ by Hayeong Pyeon
 - Entity Framwork Core
 - Many-To-Many Relationships, CRUD
 - Authentication and Identity: User Registration Controller, ViewModel, Validation, and Views; Login and Logout; and Authorization 
+- SCSS
 
 ## Description
 - This application is an independent project as a review of **Authentication with Identity** chapter of **C#** course provided by Epicodus.
 - The project objectives are as follows:    
 *boxes will be checked upon completion of this project*
-> - [ ] Many-to-many relationship is applied between `Treat`s and `Flavor`s.
-> - [ ] The application should have user authentication. 
-> - [ ] A user should be able to log in and log out; to navigate to a splash page that lists all treats and flavors; and to click on each item to see all the treats/flavors that belong to it. 
-> - [ ] Only logged in users should have access to create, update, and delete items (full CRUD functionality). All others can only view them (Read functionality only).  
+> - [x] Many-to-many relationship is applied between `Treat`s and `Flavor`s.
+> - [x] The application should have user authentication. 
+> - [x] A user should be able to log in and log out; to navigate to a splash page that lists all treats and flavors; and to click on each item to see all the treats/flavors that belong to it. 
+> - [x] Only logged in users should have access to create, update, and delete items (full CRUD functionality). All others can only view them (Read functionality only).  
+- Stylings are complete only for `Index.cshtml` and `Details.cshtml` files. 
 
 ## Setup Instructions
 > [!IMPORTANT]
@@ -67,7 +69,7 @@ dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore -v 6.0.0
 9. To compile and run the application in development mode with a watcher, run `dotnet watch run` which will open the browser automatically - if not - open the browser and navigate to https://localhost:5001. 
 
 ## Known Bugs
-*Currently under development as of March 19, 2024* 
+No known bugs as of the last update made on March 20, 2024 
 
 ## License
 [MIT](/LICENSE.txt) | Copyright © 2024 Hayeong Pyeon
