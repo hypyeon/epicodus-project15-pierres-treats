@@ -23,14 +23,11 @@ namespace PierresTreats.Controllers
       _db = db; 
     }
 
-    public async Task<ActionResult> Index()
+    [AllowAnonymous]
+    public ActionResult Index()
     {
-      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      ApplicationUser user = await _userManager.FindByIdAsync(userId);
-      List<Flavor> userFlavors = _db.Flavors
-        .Where(entry => entry.User.Id == user.Id)
-        .ToList();
-      return View(userFlavors);
+      List<Flavor> flavors = _db.Flavors.ToList();
+      return View(flavors);
     }
 
     public ActionResult Create()
@@ -55,6 +52,7 @@ namespace PierresTreats.Controllers
       }
     }
 
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {
       Flavor flavor = _db.Flavors
@@ -71,8 +69,11 @@ namespace PierresTreats.Controllers
     }
 
     [HttpPost]
-    public ActionResult Edit(Flavor flavor)
+    public async Task<ActionResult> Edit(Flavor flavor)
     {
+      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      ApplicationUser user = await _userManager.FindByIdAsync(userId);
+      flavor.User = user;
       _db.Flavors.Update(flavor);
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = flavor.FlavorId });
@@ -85,10 +86,13 @@ namespace PierresTreats.Controllers
     }
 
     [HttpPost, ActionName("Delete")]
-    public ActionResult DeleteConfirmed(int id)
+    public async Task<ActionResult> DeleteConfirmed(int id)
     // not "Delete" because both `GET` and `POST` action methods for Delete take `id` as a param 
     {
       Flavor flavor = _db.Flavors.FirstOrDefault(f => f.FlavorId == id);
+      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      ApplicationUser user = await _userManager.FindByIdAsync(userId);
+      flavor.User = user;
       _db.Flavors.Remove(flavor);
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -102,8 +106,11 @@ namespace PierresTreats.Controllers
     }
 
     [HttpPost]
-    public ActionResult AddTreat(Flavor flavor, int treatId)
+    public async Task<ActionResult> AddTreat(Flavor flavor, int treatId)
     {
+      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      ApplicationUser user = await _userManager.FindByIdAsync(userId);
+      flavor.User = user;
       #nullable enable
       TreatFlavor? entity = _db.TreatFlavors.FirstOrDefault(join => 
         (join.TreatId == treatId && join.FlavorId == flavor.FlavorId)

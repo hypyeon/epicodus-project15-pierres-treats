@@ -15,15 +15,18 @@
 }
 else
 {
-  <h4>Flavors:</h4>
+  <p>Flavors that belong to this treat: </p>
   <ul>
     @foreach(TreatFlavor join in Model.JoinEntities)
     {
-      <li>Tag: @join.Flavor.Name</li>
-      @using (Html.BeginForm("DeleteJoin", "Items"))
+      <li>@join.Flavor.Name</li>
+      @if (User.Identity.IsAuthenticated)
       {
-        @Html.Hidden("id", @join.TreatFlavorId)
-        <input type="submit" value="Remove" />
+        @using (Html.BeginForm("DeleteJoin", "Items"))
+        {
+          @Html.Hidden("id", @join.TreatFlavorId)
+          <input type="submit" value="Remove" />
+        }
       }
     }
   </ul>
@@ -32,4 +35,4 @@ else
 <p>@Html.ActionLink("Edit", "Edit", new { id = Model.TreatId })</p>
 <p>@Html.ActionLink("Delete", "Delete", new { id = Model.TreatId })</p>
 <p>@Html.ActionLink("Treat List", "Index")</p>
-<p>@Html.ActionLink("Add a Flavor", "AddFlavor", new { id = Model.TreatId })</p>
+<p>@Html.ActionLink("Add Flavor", "AddFlavor", new { id = Model.TreatId })</p>
