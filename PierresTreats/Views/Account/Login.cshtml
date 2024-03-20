@@ -1,0 +1,28 @@
+@{
+  Layout = "_Layout";
+}
+
+@using PierresTreats.ViewModels
+@model LoginViewModel
+
+<h2>Sign In</h2>
+<hr />
+
+@if(!ViewData.ModelState.IsValid) 
+{
+  @Html.ValidationSummary("Error: ") 
+}
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(m => m.Email)
+  @Html.TextBoxFor(m => m.Email)
+
+  @Html.LabelFor(m => m.Password)
+  @Html.EditorFor(m => m.Password)
+
+  <input type="submit" value="Sign In" />
+}
+
+<p>@Html.ActionLink("Sign Up", "Register")</p>
+<p>@Html.ActionLink("Account Page", "Index")</p>

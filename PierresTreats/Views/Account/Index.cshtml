@@ -2,7 +2,19 @@
   Layout = "_Layout";
 }
 
-<h2>Create or manage account</h2>
+<h2>Account Page</h2>
 <hr />
-<p>@Html.ActionLink("Sign Up", "Register")</p>
+@if (User.Identity.IsAuthenticated)
+{
+  <p>Hello @User.Identity.Name!</p>
+  @using (Html.BeginForm("LogOff", "Account"))
+  {
+    <input type="submit" value="Sign Out" />
+  }
+}
+else
+{
+  <p>@Html.ActionLink("Sign Up", "Register")</p>
+  <p>@Html.ActionLink("Sign In", "Login")</p>
+}
 <p>@Html.ActionLink("Home", "Index", "Home")</p>
