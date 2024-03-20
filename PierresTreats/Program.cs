@@ -23,6 +23,16 @@ namespace PierresTreats
       builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
         .AddEntityFrameworkStores<PierresTreatsContext>()
         .AddDefaultTokenProviders();
+      
+      builder.Services.Configure<IdentityOptions>(options =>
+      {
+        options.Password.RequireDigit = true;
+        options.Password.RequireLowercase = true;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireUppercase = false;
+        options.Password.RequiredLength = 6;
+        options.Password.RequiredUniqueChars = 0;
+      });
 
       WebApplication app = builder.Build();
 
