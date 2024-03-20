@@ -33,7 +33,8 @@ namespace PierresTreats.Controllers
       {
         return View(treat);
       }
-      else {
+      else 
+      {
         _db.Treats.Add(treat);
         _db.SaveChanges();
         return RedirectToAction("Details", new { id = treat.TreatId });
