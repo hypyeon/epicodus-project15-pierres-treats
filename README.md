@@ -1,6 +1,8 @@
 # Pierre's Sweet and Savory Treats 🧁
 by Hayeong Pyeon
 
+![preview](./PierresTreats/wwwroot/img/preview.png)
+
 ## Table of Contents
 1. [Technologies Used](#technologies-used)
 2. [Description](#description)
