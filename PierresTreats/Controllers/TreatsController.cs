@@ -110,10 +110,10 @@ namespace PierresTreats.Controllers
     }
 
     [HttpPost]
-    public ActionResult DeleteJoin(int id)
+    public ActionResult DeleteJoin(int joinId)
     {
       TreatFlavor entry = _db.TreatFlavors
-        .FirstOrDefault(e => e.TreatFlavorId == id);
+        .FirstOrDefault(e => e.TreatFlavorId == joinId);
       _db.TreatFlavors.Remove(entry);
       _db.SaveChanges();
       return RedirectToAction("Index");
