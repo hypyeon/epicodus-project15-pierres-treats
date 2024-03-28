@@ -44,7 +44,7 @@ appsettings.json
 ```
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost;Port=3306;database=pierres_treats_auth;uid=[YOUR-USERNAME];pwd=[YOUR-PASSWORD];"
+    "DefaultConnection": "Server=localhost;Port=3306;database=pierres_auth;uid=[YOUR-USERNAME];pwd=[YOUR-PASSWORD];"
   }
 }
 ```

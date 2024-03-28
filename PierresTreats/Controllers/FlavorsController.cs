@@ -99,17 +99,21 @@ namespace PierresTreats.Controllers
       #nullable disable
       if (entity == null && treatId != 0)
       {
-        _db.TreatFlavors.Add(new TreatFlavor() { TreatId = treatId, FlavorId = flavor.FlavorId });
+        _db.TreatFlavors.Add(
+          new TreatFlavor() { 
+            TreatId = treatId, FlavorId = flavor.FlavorId 
+          }
+        );
         _db.SaveChanges();
       }
       return RedirectToAction("Details", new { id = flavor.FlavorId });
     }
 
     [HttpPost]
-    public ActionResult DeleteJoin(int id)
+    public ActionResult DeleteJoin(int joinId)
     {
       TreatFlavor entry = _db.TreatFlavors
-        .FirstOrDefault(e => e.TreatFlavorId == id);
+        .FirstOrDefault(e => e.TreatFlavorId == joinId);
       _db.TreatFlavors.Remove(entry);
       _db.SaveChanges();
       return RedirectToAction("Index");
