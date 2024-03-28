@@ -30,8 +30,6 @@ by Hayeong Pyeon
 - Stylings are complete only for `Index.cshtml` and `Details.cshtml` files. 
 
 ## Setup Instructions
-> [!IMPORTANT]
-> Make sure you have [MySQL Community Server and Workbench installed](https://full-time.learnhowtoprogram.com/c-and-net/getting-started-with-c/installing-and-configuring-mysql). 
 1. Clone this repo. 
 2. Open your shell (e.g., Terminal or GitBash) and navigate to this project's production directory named **PierresTreats**. 
 3. Create a file named **appsettings.json**. 

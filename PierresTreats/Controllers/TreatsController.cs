@@ -16,7 +16,7 @@ namespace PierresTreats.Controllers
   {
     private readonly PierresTreatsContext _db;    
     private readonly UserManager<ApplicationUser> _userManager;
-    public TreatsController(UserManager<ApplicationUser> userManager,PierresTreatsContext db)
+    public TreatsController(UserManager<ApplicationUser> userManager, PierresTreatsContext db)
     {
       _userManager = userManager;
       _db = db; 
@@ -69,11 +69,8 @@ namespace PierresTreats.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> Edit(Treat treat)
+    public ActionResult Edit(Treat treat)
     {
-      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      ApplicationUser user = await _userManager.FindByIdAsync(userId);
-      treat.User = user;
       _db.Treats.Update(treat);
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = treat.TreatId });
@@ -86,13 +83,10 @@ namespace PierresTreats.Controllers
     }
 
     [HttpPost, ActionName("Delete")]
-    public async Task<ActionResult> DeleteConfirmed(int id)
+    public ActionResult DeleteConfirmed(int id)
     // not "Delete" because both `GET` and `POST` action methods for Delete take `id` as a param 
     {
       Treat treat = _db.Treats.FirstOrDefault(t => t.TreatId == id);
-      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      ApplicationUser user = await _userManager.FindByIdAsync(userId);
-      treat.User = user;
       _db.Treats.Remove(treat);
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -106,11 +100,8 @@ namespace PierresTreats.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> AddFlavor(Treat treat, int flavorId)
+    public ActionResult AddFlavor(Treat treat, int flavorId)
     {
-      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      ApplicationUser user = await _userManager.FindByIdAsync(userId);
-      treat.User = user;
       #nullable enable
       TreatFlavor? entity = _db.TreatFlavors.FirstOrDefault(join => 
         (join.FlavorId == flavorId && join.TreatId == treat.TreatId)
@@ -118,7 +109,11 @@ namespace PierresTreats.Controllers
       #nullable disable
       if (entity == null && flavorId != 0)
       {
-        _db.TreatFlavors.Add(new TreatFlavor() { FlavorId = flavorId, TreatId = treat.TreatId });
+        _db.TreatFlavors.Add(
+          new TreatFlavor() { 
+            FlavorId = flavorId, TreatId = treat.TreatId 
+          }
+        );
         _db.SaveChanges();
       }
       return RedirectToAction("Details", new { id = treat.TreatId });
@@ -131,7 +126,7 @@ namespace PierresTreats.Controllers
         .FirstOrDefault(e => e.TreatFlavorId == id);
       _db.TreatFlavors.Remove(entry);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Index", "Treats");
     }
   }
 }

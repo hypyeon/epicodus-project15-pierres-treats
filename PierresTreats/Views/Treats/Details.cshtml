@@ -24,7 +24,7 @@
             <li>@join.Flavor.Name</li>
             @if (User.Identity.IsAuthenticated)
             {
-              @using (Html.BeginForm("DeleteJoin", "Items"))
+              @using (Html.BeginForm("DeleteJoin", "Flavors"))
               {
               @Html.Hidden("id", @join.TreatFlavorId)
               <input type="submit" value="Remove" />

@@ -11,8 +11,8 @@ using PierresTreats.Models;
 namespace PierresTreats.Migrations
 {
     [DbContext(typeof(PierresTreatsContext))]
-    [Migration("20240320175129_AddNameForRegister")]
-    partial class AddNameForRegister
+    [Migration("20240328042453_DeleteUserName")]
+    partial class DeleteUserName
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -10,10 +10,6 @@ namespace PierresTreats.ViewModels
     public string Email { get; set; }
 
     [Required]
-    [Display(Name = "User name: ")]
-    public string UserName { get; set; }
-
-    [Required]
     [DataType(DataType.Password)]
     [Display(Name = "Password: ")]
     [RegularExpression("^(?=.*[a-z])(?=.*\\d).{6,}$", ErrorMessage = "Your password must contain at least six characters, a lowercase letter, and a number.")]
