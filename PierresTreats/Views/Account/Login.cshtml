@@ -15,10 +15,10 @@
 
 @using (Html.BeginForm())
 {
-  @Html.LabelFor(m => m.Email)
+  @Html.LabelFor(m => m.Email, "Email Address: ")
   @Html.TextBoxFor(m => m.Email)
 
-  @Html.LabelFor(m => m.Password)
+  @Html.LabelFor(m => m.Password, "Password: ")
   @Html.EditorFor(m => m.Password)
 
   <input type="submit" value="Sign In" />

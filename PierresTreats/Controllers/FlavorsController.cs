@@ -36,20 +36,11 @@ namespace PierresTreats.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create(Flavor flavor)
+    public ActionResult Create(Flavor flavor)
     {
-      if (!ModelState.IsValid)
-      {
-        return View(flavor);
-      }
-      else {
-        string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        ApplicationUser user = await _userManager.FindByIdAsync(userId);
-        flavor.User = user;
-        _db.Flavors.Add(flavor);
-        _db.SaveChanges();
-        return RedirectToAction("Details", new { id = flavor.FlavorId });
-      }
+      _db.Flavors.Add(flavor);
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = flavor.FlavorId });
     }
 
     [AllowAnonymous]
@@ -121,7 +112,7 @@ namespace PierresTreats.Controllers
         .FirstOrDefault(e => e.TreatFlavorId == id);
       _db.TreatFlavors.Remove(entry);
       _db.SaveChanges();
-      return RedirectToAction("Index", "Flavors");
+      return RedirectToAction("Index");
     }
   }
 }

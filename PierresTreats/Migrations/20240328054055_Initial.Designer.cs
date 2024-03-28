@@ -11,8 +11,8 @@ using PierresTreats.Models;
 namespace PierresTreats.Migrations
 {
     [DbContext(typeof(PierresTreatsContext))]
-    [Migration("20240320160845_AddUserToTreatAndFlavor")]
-    partial class AddUserToTreatAndFlavor
+    [Migration("20240328054055_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
